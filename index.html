@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Made Simple · Book 3 · Ready-to-Copy Prompts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:       #0E1C36;
+      --navy-card:  #162035;
+      --navy-inner: #0A1526;
+      --blue:       #2563EB;
+      --blue-light: #3B82F6;
+      --glow:       #818CF8;
+      --orange:     #F97316;
+      --orange-dim: #C2570A;
+      --white:      #F1F5F9;
+      --muted:      #94A3B8;
+      --border:     #1E3050;
+      --green:      #22C55E;
+      --green-dim:  #15803D;
+      --red:        #EF4444;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* ── EKRAN LOGOWANIA ── */
+    #ekran-logowania {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .login-box {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 48px 40px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+
+    .login-box::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--orange), transparent);
+    }
+
+    .login-badge {
+      display: inline-block;
+      background: rgba(249,115,22,0.1);
+      color: var(--orange);
+      font-weight: 600;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(249,115,22,0.3);
+      margin-bottom: 20px;
+    }
+
+    .login-box h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #fff 30%, var(--glow) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .login-box p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .login-box p strong {
+      color: var(--white);
+    }
+
+    .kod-input {
+      width: 100%;
+      background: var(--navy-inner);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 1.1rem;
+      font-family: 'Outfit', monospace;
+      font-weight: 700;
+      color: var(--white);
+      text-align: center;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    .kod-input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
+    }
+
+    .kod-input.error {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.2);
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25%      { transform: translateX(-8px); }
+      75%      { transform: translateX(8px); }
+    }
+
+    .btn-odblokuj {
+      width: 100%;
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+      margin-bottom: 16px;
+    }
+
+    .btn-odblokuj:hover {
+      background: var(--blue-light);
+      box-shadow: 0 0 20px rgba(37,99,235,0.4);
+    }
+
+    .btn-odblokuj:active { transform: scale(0.98); }
+
+    .error-msg {
+      font-size: 0.85rem;
+      color: var(--red);
+      min-height: 20px;
+      margin-bottom: 8px;
+    }
+
+    .login-hint {
+      font-size: 0.78rem;
+      color: #475569;
+      margin-top: 16px;
+    }
+
+    /* ── GŁÓWNA TREŚĆ (ukryta domyślnie) ── */
+    #tresc {
+      display: none;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      text-align: center;
+      padding: 56px 24px 44px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--blue), transparent);
+    }
+
+    .header-glow {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 200px;
+      background: radial-gradient(ellipse, rgba(37,99,235,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .tom-badge {
+      display: inline-block;
+      background: var(--orange-dim);
+      color: var(--orange);
+      font-weight: 600;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--orange-dim);
+      margin-bottom: 18px;
+    }
+
+    header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      font-weight: 800;
+      line-height: 1.5;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #fff 30%, var(--glow) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header .subtitle {
+      font-size: 1.3rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .header-tip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37,99,235,0.12);
+      border: 1px solid rgba(37,99,235,0.3);
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 0.85rem;
+      color: #93C5FD;
+      max-width: 520px;
+    }
+
+    /* ── NAW ── */
+    .chapter-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14,28,54,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 20px;
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .chapter-nav::-webkit-scrollbar { display: none; }
+
+    .nav-item {
+      flex-shrink: 0;
+      padding: 14px 16px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-item:hover { color: var(--white); }
+    .nav-item.active { color: var(--orange); border-bottom-color: var(--orange); }
+
+    /* ── MAIN ── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    .chapter { padding-top: 48px; }
+
+    .chapter-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+      padding-top: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .chapter-info h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+
+    .chapter-info p { font-size: 0.82rem; color: var(--muted); }
+
+    .komenda-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 14px;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .komenda-card:hover {
+      border-color: rgba(37,99,235,0.4);
+      box-shadow: 0 4px 24px rgba(37,99,235,0.08);
+    }
+
+    .komenda-head {
+      display: flex;
+      align-items: center;
+      padding: 14px 18px 10px;
+      gap: 12px;
+    }
+
+    .komenda-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .komenda-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--orange);
+      background: rgba(249,115,22,0.1);
+      border: 1px solid rgba(249,115,22,0.2);
+      border-radius: 5px;
+      padding: 2px 8px;
+      flex-shrink: 0;
+      letter-spacing: 0.05em;
+    }
+
+    .komenda-title {
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: var(--white);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .komenda-body { padding: 0 18px 16px; }
+
+    .komenda-tekst {
+      background: var(--navy-inner);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 0.875rem;
+      line-height: 1.7;
+      color: #CBD5E1;
+      white-space: pre-wrap;
+      margin-bottom: 12px;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .komenda-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-kopiuj {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 7px;
+      padding: 8px 18px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .btn-kopiuj:hover { background: var(--blue-light); box-shadow: 0 0 16px rgba(37,99,235,0.4); }
+    .btn-kopiuj:active { transform: scale(0.96); }
+    .btn-kopiuj.success { background: var(--green-dim); }
+    .btn-kopiuj.error   { background: #991B1B; }
+
+    .copy-hint { font-size: 0.78rem; color: var(--muted); }
+
+    .progress-bar {
+      background: rgba(37,99,235,0.1);
+      border: 1px solid rgba(37,99,235,0.2);
+      border-radius: 6px;
+      padding: 12px 18px;
+      margin-bottom: 32px;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 5px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--blue), var(--glow));
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    .progress-label { font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
+    .progress-count { font-size: 0.78rem; color: #93C5FD; font-weight: 600; white-space: nowrap; }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 32px 20px;
+      text-align: center;
+    }
+
+    .footer-tomy {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .footer-tom-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .footer-tom-link.current {
+      background: rgba(249,115,22,0.15);
+      border: 1px solid rgba(249,115,22,0.3);
+      color: var(--orange);
+      cursor: default;
+    }
+
+    .footer-tom-link.coming {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .footer-tom-link.coming:hover { border-color: rgba(37,99,235,0.3); color: #93C5FD; }
+    .footer-copy { font-size: 0.78rem; color: #475569; }
+
+    @media (max-width: 540px) {
+      header { padding: 40px 16px 32px; }
+      .login-box { padding: 36px 24px; }
+      .btn-kopiuj { width: 100%; justify-content: center; }
+      .komenda-actions { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ ACCESS SCREEN ════════════════════════════════════════════════════ -->
+<div id="ekran-logowania">
+  <div class="login-box">
+    <div class="login-badge">Book 3 · AI Made Simple</div>
+    <h1>Access code</h1>
+    <p>Enter the code from the last page of your e-book<br><strong>AI Made Simple — Book 3</strong></p>
+    <input
+      type="text"
+      id="kod-input"
+      class="kod-input"
+      placeholder="BOOK3-XXXX"
+      maxlength="10"
+      autocomplete="off"
+      spellcheck="false"
+    >
+    <div class="error-msg" id="error-msg"></div>
+    <button class="btn-odblokuj" onclick="sprawdzKod()">🔓 Unlock prompts</button>
+    <p class="login-hint">Your code is on the last page of the e-book</p>
+  </div>
+</div>
+
+<!-- ══ MAIN CONTENT ══════════════════════════════════════════════════════ -->
+<div id="tresc">
+
+<header>
+  <div class="header-glow"></div>
+  <div class="tom-badge">Book 3 · AI Made Simple</div>
+  <div class="header-series">AI Made Simple</div>
+  <h1>Book 3: Household Budget &amp; Everyday Money.<br>Take control — no spreadsheets, no stress.</h1>
+  <div class="header-tagline">Take control of your finances — no maths, no spreadsheets, no tech knowledge required.</div>
+  <div class="header-subtitle-small">A plain-English guide for everyone. · Leszek Ignatowicz · book3.aidorzeczy.com</div>
+  <div class="header-tip">
+    <span class="icon">💡</span>
+    Click <strong>Copy prompt</strong>, then paste it into ChatGPT or Claude
+  </div>
+</header>
+
+<nav class="chapter-nav" id="chapNav">
+  <a class="nav-item active" href="#r1" onclick="setActive(this)">Ch. 1 — Spending</a>
+  <a class="nav-item" href="#r2" onclick="setActive(this)">Ch. 2 — Savings</a>
+  <a class="nav-item" href="#r3" onclick="setActive(this)">Ch. 3 — Deals</a>
+  <a class="nav-item" href="#r4" onclick="setActive(this)">Ch. 4 — Big Purchase</a>
+  <a class="nav-item" href="#r5" onclick="setActive(this)">Ch. 5 — Budget</a>
+  <div class="nav-sep"></div>
+  <a class="nav-item" href="#cheatsheet" onclick="setActive(this)">Cheat Sheet</a>
+  <a class="nav-item" href="#advanced" onclick="setActive(this)">Advanced</a>
+</nav>
+
+<main>
+
+  <div class="progress-bar">
+    <span class="progress-label">Prompts copied:</span>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-count" id="progressCount">0 / 10</span>
+  </div>
+
+  <!-- ═══ CHAPTER 1 ═══ -->
+  <section class="chapter" id="r1">
+    <div class="chapter-header">
+      <div class="chapter-icon">🔎</div>
+      <div class="chapter-info">
+        <h2>Chapter 1: Where Is All the Money Going?</h2>
+        <p>Prompt No. 1 · Analyse last month's spending and find out where the money actually went</p>
+      </div>
+    </div>
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 1</span>
+          <span class="komenda-title">Spending analysis — categories, totals, and 3 places to cut back</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k1">Act as an experienced household accountant.
+
+Analyse my spending from last month in 3 steps:
+
+1. Group all transactions by category (groceries, transport, bills & utilities, eating out, entertainment, other) and give me a subtotal for each.
+
+2. Identify which category looks disproportionately high compared to a typical household budget.
+
+3. Suggest 3 specific areas where I could realistically spend less.
+
+My monthly take-home income: [e.g. $3,500 / £2,800 / €3,000]
+
+My expenses last month (paste your list however it comes):
+[e.g. Supermarket $340, Deliveroo $180, Rent $1,400, Electricity $90, Netflix $18, Spotify $12, Petrol $160, Restaurants $310, Clothing $150, Pharmacy $45]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k1', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CHAPTER 2 ═══ -->
+  <section class="chapter" id="r2">
+    <div class="chapter-header">
+      <div class="chapter-icon">💡</div>
+      <div class="chapter-info">
+        <h2>Chapter 2: Finding Real Savings</h2>
+        <p>Prompt No. 2 · 5 tailored savings ideas — specific to your budget, not generic advice</p>
+      </div>
+    </div>
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 2</span>
+          <span class="komenda-title">5 personalised savings ideas with monthly amounts</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k2">Act as a personal finance advisor who specialises in household savings.
+
+Review my budget and suggest 5 specific ways I could save money.
+
+Each suggestion must:
+— be tailored to my actual situation (no generic tips),
+— include an estimated monthly saving in my currency,
+— be realistic without requiring drastic lifestyle changes.
+
+My monthly take-home income: [e.g. $3,800]
+
+My fixed monthly expenses:
+[e.g. Rent $1,400, loan repayment $350, phone plan $55, internet $45, electricity approx. $90, car insurance $80]
+
+My variable monthly expenses (approximate):
+[e.g. groceries & household $550, restaurants & coffee out $280, streaming & entertainment $65, clothing $120, petrol $160]
+
+What I am absolutely not willing to cut: [e.g. one holiday per year, gym membership, Friday nights out with friends]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k2', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CHAPTER 3 ═══ -->
+  <section class="chapter" id="r3">
+    <div class="chapter-header">
+      <div class="chapter-icon">⚖️</div>
+      <div class="chapter-info">
+        <h2>Chapter 3: Comparing Deals — Cut Through the Small Print</h2>
+        <p>Prompt No. 3 · Comparison table, hidden costs flagged, clear recommendation</p>
+      </div>
+    </div>
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 3</span>
+          <span class="komenda-title">Deal comparison with recommendation</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k3">Act as an independent consumer advisor.
+
+Compare the following offers and help me choose the best one. Do this in 3 steps:
+
+1. Build a clear comparison table of all the offers
+
+2. Flag any hidden costs, gotchas, or red flags you can spot
+
+3. Give me your recommendation in 2 sentences with a reason
+
+What I'm comparing: [Type of product or service, e.g. broadband, car insurance, mobile phone plan, bank account, energy tariff]
+
+Deal A: [e.g. Provider X: $55/month, 500 Mbps, 24-month contract, free router included]
+
+Deal B: [e.g. Provider Y: $45/month, 150 Mbps, no contract, router costs $120 extra]
+
+Deal C (if you have one): [Details, or leave blank]
+
+What matters most to me: [e.g. lowest monthly cost / no contract lock-in / fastest speed / reliable customer service]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k3', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CHAPTER 4 ═══ -->
+  <section class="chapter" id="r4">
+    <div class="chapter-header">
+      <div class="chapter-icon">🛒</div>
+      <div class="chapter-info">
+        <h2>Chapter 4: Big Purchases — Can I Actually Afford This?</h2>
+        <p>Prompt No. 4 · Honest financial assessment — upfront or instalments, or a savings plan if needed</p>
+      </div>
+    </div>
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 4</span>
+          <span class="komenda-title">Financial assessment of a significant purchase</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k4">Act as a sensible, straight-talking household financial advisor.
+
+Help me decide whether to go ahead with a significant purchase. Do this in 3 steps:
+
+1. Assess whether I can genuinely afford this given my current budget
+
+2. If yes — advise whether paying upfront or in instalments makes more financial sense, and what to watch out for
+
+3. If it's a stretch — give me a realistic savings plan with a monthly amount and a target date
+
+What I want to buy: [e.g. new laptop approx. $1,200 / bathroom renovation approx. $8,000 / used car approx. $12,000]
+
+My monthly take-home income: [e.g. $3,500]
+
+My fixed monthly commitments: [e.g. rent $1,200, loan repayment $350, bills approx. $200]
+
+My current savings: [e.g. $4,500 / or: none at the moment]
+Employment situation: [e.g. permanent job / freelance / fixed-term contract]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k4', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CHAPTER 5 ═══ -->
+  <section class="chapter" id="r5">
+    <div class="chapter-header">
+      <div class="chapter-icon">📊</div>
+      <div class="chapter-info">
+        <h2>Chapter 5: Your Simple Monthly Budget</h2>
+        <p>Prompt No. 5 · A realistic budget with 6–7 categories — no spreadsheet, no daily logging</p>
+      </div>
+    </div>
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 5</span>
+          <span class="komenda-title">Simple monthly household budget plan</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k5">Act as a practical, no-nonsense budget advisor.
+
+Create a simple, realistic monthly household budget for me.
+
+Keep it easy to use — I don't want to track every single transaction.
+
+Suggest a maximum of 6–7 categories with a clear spending limit for each.
+
+Include a recommended monthly savings amount and a suggested purpose for it.
+
+My monthly take-home income: [e.g. $3,800]
+
+Fixed expenses I can't avoid:
+[e.g. rent $1,200, loan repayment $350, phone $50, internet $40]
+
+My current financial priorities:
+[e.g. build an emergency fund / pay off credit card debt / save for a holiday / just stop going further into the red]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k5', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CHEAT SHEET ═══ -->
+  <section class="chapter" id="cheatsheet">
+    <div class="chapter-header">
+      <div class="chapter-icon">📌</div>
+      <div class="chapter-info">
+        <h2>Cheat Sheet — All Prompts at a Glance</h2>
+        <p>Prompts No. 1–5 in short form · Use the full chapter versions for best results</p>
+      </div>
+    </div>
+    <div class="komenda-card">
+      <div class="komenda-body" style="padding:20px 24px;">
+        <p style="color:var(--muted);font-size:0.88rem;margin-bottom:12px;">These are condensed versions. The full prompts in each chapter give the AI more context and produce better results.</p>
+        <p style="color:var(--white);font-size:0.9rem;margin:0;">
+          <strong>No. 1</strong> — Spending analysis → Ch. 1 &nbsp;|&nbsp;
+          <strong>No. 2</strong> — Savings ideas → Ch. 2 &nbsp;|&nbsp;
+          <strong>No. 3</strong> — Deal comparison → Ch. 3 &nbsp;|&nbsp;
+          <strong>No. 4</strong> — Big purchase → Ch. 4 &nbsp;|&nbsp;
+          <strong>No. 5</strong> — Monthly budget → Ch. 5
+        </p>
+        <p style="color:var(--muted);font-size:0.85rem;margin-top:12px;">All prompts also available at <a href="https://book3.aidorzeczy.com" style="color:var(--orange);">book3.aidorzeczy.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ADVANCED ═══ -->
+  <section class="chapter" id="advanced">
+    <div class="chapter-header">
+      <div class="chapter-icon">🚀</div>
+      <div class="chapter-info">
+        <h2>Advanced Prompts — Appendix 2</h2>
+        <p>Prompts No. 6–10 · More powerful versions for complex financial situations</p>
+      </div>
+    </div>
+
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 6</span>
+          <span class="komenda-title">Your annual financial review</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k6">Act as a combined accountant and financial advisor.
+
+Help me do an annual review of my finances in 4 steps:
+
+1. Calculate total spending in each category across the whole year
+
+2. Identify which month had the highest spending and explore why
+
+3. Give me the 3 most important financial lessons from this year
+
+4. Suggest 3 concrete financial goals for the year ahead
+
+My average monthly take-home income this year: [amount]
+
+Monthly spending (approximations are fine):
+[e.g. January $2,800 / February $2,600 / March $3,100 / April $2,900 / May $3,000 / June $4,200 (holiday) ...]
+
+Major one-off expenses this year: [e.g. new boiler $3,200 / car $9,000]
+
+Any financial surprises this year — good or bad:
+[e.g. unexpectedly high energy bills / redundancy payment / medical expense I didn't plan for]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k6', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 7</span>
+          <span class="komenda-title">Saving towards a specific goal</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k7">Act as a financial coach who specialises in goal-based saving.
+
+I want to save up a specific amount for a specific purpose. Create for me:
+
+1. A realistic monthly savings plan with a specific amount per month
+
+2. Optional strategies to reach the goal faster (without extreme sacrifice)
+
+3. What to do if I miss a month — how to get back on track
+
+My goal: [What I'm saving for, e.g. emergency fund of $5,000 / holiday fund $3,000 / house deposit contribution $15,000]
+Target timeframe: [e.g. 12 months / 18 months / no fixed deadline]
+How much I can currently save per month: [e.g. approx. $200–250]
+
+My monthly income and main commitments:
+[e.g. $3,500 take-home / $2,100 in fixed expenses]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k7', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 8</span>
+          <span class="komenda-title">Spot the hidden charges in a contract</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k8">Act as a sharp, experienced consumer rights lawyer.
+
+Review the document below (contract, terms, or pricing schedule) for hidden costs and financial risks. Do this in 3 steps:
+
+1. Identify all hidden fees, penalties, and financial gotchas
+
+2. Flag any clauses that could catch me off guard financially
+
+3. Give me 3 specific questions to ask the provider before I sign anything
+
+Type of document: [e.g. broadband contract / car lease agreement / insurance policy / gym membership terms]
+
+Document content (paste below):
+[Paste the contract text or the sections that concern you. Remove any personal details — name, address, account numbers — before pasting.]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k8', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 9</span>
+          <span class="komenda-title">Buy new, buy used, or rent? Let's run the numbers</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k9">Act as an experienced financial advisor.
+
+Help me decide: buy new, buy used, or rent? Do this in 3 steps:
+
+1. Calculate the total cost of each option over 3–5 years (including maintenance, depreciation, and other likely costs)
+
+2. Tell me which option is financially better — and why
+
+3. List what I should check or verify before making a final decision
+
+What this decision is about: [e.g. car / washing machine / camera equipment / apartment]
+
+Option 1 — Buy new: [e.g. price $28,000 / or monthly finance payment $420 over 4 years]
+Option 2 — Buy used: [e.g. price $14,000 / age: 3 years / mileage: 45,000]
+Option 3 — Rent / lease (if applicable): [e.g. $320/month, no long-term commitment]
+
+My situation: [e.g. I drive a lot / reliability is critical / I prefer not to be locked into a long-term commitment]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k9', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="komenda-card">
+      <div class="komenda-head">
+        <div class="komenda-label">
+          <span class="komenda-num">No. 10</span>
+          <span class="komenda-title">What to do with an unexpected windfall</span>
+        </div>
+      </div>
+      <div class="komenda-body">
+        <div class="komenda-tekst" id="k10">Act as a careful, experienced financial advisor.
+
+I've just received an unexpected sum of money and I want to make good use of it.
+
+Suggest a sensible split across 3 purposes:
+
+1. Security — emergency fund, paying down debt
+
+2. Goals — saving towards something specific
+
+3. Enjoyment — because a reward is part of the plan too
+
+Justify each split with specific amounts and a clear reason.
+
+Amount received: [e.g. $2,500 / £3,000 / €4,000]
+Where it came from: [e.g. work bonus / tax refund / sold something / inheritance]
+
+My current financial situation:
+[e.g. no emergency fund / credit card debt of $1,800 / finances broadly stable / big expense coming up in 3 months]</div>
+        <div class="komenda-actions">
+          <button class="btn-kopiuj" onclick="kopiuj('k10', this)">📋 Copy prompt</button>
+          <span class="copy-hint">Ctrl+V or long-press → Paste</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-tomy">
+    <a class="footer-tom-link coming" href="https://book1.aidorzeczy.com">Book 1 — Communication &amp; Difficult Emails</a>
+    <a class="footer-tom-link coming" href="https://book2.aidorzeczy.com">Book 2 — Organisation &amp; Planning</a>
+    <a class="footer-tom-link current" href="#">★ Book 3 — you are here</a>
+  </div>
+  <p class="footer-copy">AI Made Simple · Leszek Ignatowicz · book3.aidorzeczy.com</p>
+</footer>
+
+</div><!-- koniec #tresc -->
+
+<script>
+  // ═══════════════════════════════════════════════════════
+  // ZMIEŃ TEN KOD NA WŁAŚCIWY PRZED PUBLIKACJĄ
+  // Enter this on the last page of Book 3 as well
+  // ═══════════════════════════════════════════════════════
+  const POPRAWNY_KOD = 'BOOK3-XXXX';
+
+  const KLUCZ_SESJI = 'dostep_book3_en';
+
+  function sprawdzKod() {
+    const input = document.getElementById('kod-input');
+    const errorMsg = document.getElementById('error-msg');
+    const wpisany = input.value.trim().toUpperCase();
+
+    if (wpisany === POPRAWNY_KOD) {
+      // Zapisz w sessionStorage — dostęp trwa do zamknięcia karty
+      sessionStorage.setItem(KLUCZ_SESJI, '1');
+      odblokuj();
+    } else {
+      input.classList.add('error');
+      errorMsg.textContent = 'Incorrect code. Check the last page of your e-book.';
+      setTimeout(() => input.classList.remove('error'), 600);
+    }
+  }
+
+  function odblokuj() {
+    document.getElementById('ekran-logowania').style.display = 'none';
+    document.getElementById('tresc').style.display = 'block';
+  }
+
+  // Sprawdź czy już odblokowane w tej sesji
+  if (sessionStorage.getItem(KLUCZ_SESJI) === '1') {
+    odblokuj();
+  }
+
+  // Enter w polu kodu
+  document.getElementById('kod-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') sprawdzKod();
+  });
+
+  // ── Kopiowanie ──────────────────────────────────────────
+  const TOTAL = 10;
+  const copied = new Set();
+
+  function updateProgress() {
+    const n = copied.size;
+    document.getElementById('progressCount').textContent = n + ' / ' + TOTAL;
+    document.getElementById('progressFill').style.width = (n / TOTAL * 100) + '%';
+  }
+
+  function kopiuj(id, btn) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const tekst = el.innerText;
+    const resetBtn = () => { btn.textContent = '📋 Copy prompt'; btn.classList.remove('success','error'); };
+
+    if (!navigator.clipboard) {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = tekst; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.focus(); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta);
+        btn.textContent = '✓ Copied!'; btn.classList.add('success');
+        copied.add(id); updateProgress(); setTimeout(resetBtn, 2500);
+      } catch { btn.textContent='⚠ Error'; btn.classList.add('error'); setTimeout(resetBtn,3500); }
+      return;
+    }
+
+    navigator.clipboard.writeText(tekst)
+      .then(() => { btn.textContent='✓ Copied!'; btn.classList.add('success'); copied.add(id); updateProgress(); setTimeout(resetBtn,2500); })
+      .catch(() => { btn.textContent='⚠ Copy failed'; btn.classList.add('error'); setTimeout(resetBtn,3000); });
+  }
+
+  function setActive(el) {
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  const sections = document.querySelectorAll('.chapter');
+  const navItems = document.querySelectorAll('.nav-item');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navItems.forEach(n => n.classList.toggle('active', n.getAttribute('href')==='#'+id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
