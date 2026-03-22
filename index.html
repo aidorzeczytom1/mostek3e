@@ -991,18 +991,22 @@ My current financial situation:
   // ZMIEŃ TEN KOD NA WŁAŚCIWY PRZED PUBLIKACJĄ
   // Enter this on the last page of Book 3 as well
   // ═══════════════════════════════════════════════════════
-  const POPRAWNY_KOD = 'BOOK3-XXXX';
+  // Akceptowane kody (case-insensitive, prefiks opcjonalny)
+  const SUFIKSY = ['AIXB'];
+  const KLUCZ = 'dostep_book3_en';
 
-  const KLUCZ_SESJI = 'dostep_book3_en';
+  function kodPoprawny(wpisany) {
+    const u = wpisany.trim().toUpperCase();
+    return SUFIKSY.some(s => u === s || u === 'BOOK3-' + s);
+  }
 
   function sprawdzKod() {
     const input = document.getElementById('kod-input');
     const errorMsg = document.getElementById('error-msg');
-    const wpisany = input.value.trim().toUpperCase();
 
-    if (wpisany === POPRAWNY_KOD) {
-      // Zapisz w sessionStorage — dostęp trwa do zamknięcia karty
-      sessionStorage.setItem(KLUCZ_SESJI, '1');
+    if (kodPoprawny(input.value)) {
+      // Persystencja — localStorage zachowuje dostęp po zamknięciu przeglądarki
+      localStorage.setItem(KLUCZ, '1');
       odblokuj();
     } else {
       input.classList.add('error');
@@ -1016,8 +1020,8 @@ My current financial situation:
     document.getElementById('tresc').style.display = 'block';
   }
 
-  // Sprawdź czy już odblokowane w tej sesji
-  if (sessionStorage.getItem(KLUCZ_SESJI) === '1') {
+  // Sprawdź persystentny dostęp (localStorage — przeżywa zamknięcie przeglądarki)
+  if (localStorage.getItem(KLUCZ) === '1') {
     odblokuj();
   }
 
