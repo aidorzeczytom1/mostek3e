@@ -1262,26 +1262,26 @@ What I want to protect for rest and myself:
 </div><!-- koniec #tresc -->
 
 <script>
-  // ═══════════════════════════════════════════════════════
-  // ZMIEŃ TEN KOD NA WŁAŚCIWY PRZED PUBLIKACJĄ
-  // Enter this on the last page of Book 2 as well
-  // ═══════════════════════════════════════════════════════
-  // Akceptowane kody (case-insensitive, prefiks opcjonalny)
-  const SUFIKSY = ['MN3H', 'XXXX'];
-  const KLUCZ = 'dostep_book2_en';
+  // Dostęp chroniony hashem SHA-256 — hasła nie są przechowywane w źródle
+  const _H = [
+    '3b0f6724023c56de9e8eb23060ff2c761b62023c3fc42ad389528835d19624f2',
+    'cbba6f7ec62d8e73e0068f65e1ddaf215c4685fa00feedf6e5bd3f05657c4891'
+  ];
+  const _K = 'b2_acc_v3';
 
-  function kodPoprawny(wpisany) {
-    const u = wpisany.trim().toUpperCase();
-    return SUFIKSY.some(s => u === s || u === 'BOOK2-' + s);
+  async function _sha256(msg) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
   }
 
-  function sprawdzKod() {
+  async function sprawdzKod() {
     const input = document.getElementById('kod-input');
     const errorMsg = document.getElementById('error-msg');
-
-    if (kodPoprawny(input.value)) {
-      // Persystencja — localStorage zachowuje dostęp po zamknięciu przeglądarki
-      localStorage.setItem(KLUCZ, '1');
+    const raw = input.value.trim().toUpperCase();
+    const variants = [raw, 'BOOK2-' + raw, raw.replace(/^BOOK2-/,'')];
+    const hashes = await Promise.all(variants.map(_sha256));
+    if (hashes.some(h => _H.includes(h))) {
+      localStorage.setItem(_K, '1');
       odblokuj();
     } else {
       input.classList.add('error');
@@ -1295,12 +1295,8 @@ What I want to protect for rest and myself:
     document.getElementById('tresc').style.display = 'block';
   }
 
-  // Sprawdź persystentny dostęp (localStorage — przeżywa zamknięcie przeglądarki)
-  if (localStorage.getItem(KLUCZ) === '1') {
-    odblokuj();
-  }
+  if (localStorage.getItem(_K) === '1') { odblokuj(); }
 
-  // Enter w polu kodu
   document.getElementById('kod-input').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') sprawdzKod();
   });
