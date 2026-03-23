@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Made Simple · Book 3 · Ready-to-Copy Prompts</title>
+  <title>AI Made Simple · Book 2 · Ready-to-Copy Prompts</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
@@ -52,9 +52,11 @@
       z-index: 999;
       background: var(--navy);
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 24px;
+      overflow-y: auto;
     }
 
     .login-box {
@@ -183,6 +185,73 @@
       font-size: 0.78rem;
       color: #475569;
       margin-top: 16px;
+    }
+
+    .upsell-block {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .upsell-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      background: rgba(249,115,22,0.1);
+      border: 1px solid rgba(249,115,22,0.25);
+      border-radius: 5px;
+      padding: 2px 9px;
+      margin-bottom: 10px;
+    }
+
+    .upsell-block p {
+      font-size: 0.88rem;
+      color: #CBD5E1;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .upsell-block p strong {
+      color: var(--white);
+    }
+
+    .btn-amazon {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--orange);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: background 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-amazon:hover {
+      background: #ea6c0a;
+      box-shadow: 0 0 18px rgba(249,115,22,0.4);
+    }
+
+    .amazon-disclaimer {
+      margin: 16px auto 0;
+      padding: 12px 18px;
+      background: rgba(37,99,235,0.06);
+      border: 1px solid rgba(37,99,235,0.15);
+      border-radius: 8px;
+      font-size: 0.78rem;
+      color: #64748B;
+      line-height: 1.6;
+      text-align: center;
+      max-width: 420px;
+      width: 100%;
     }
 
     /* ── GŁÓWNA TREŚĆ (ukryta domyślnie) ── */
@@ -498,6 +567,157 @@
     .footer-tom-link.coming:hover { border-color: rgba(37,99,235,0.3); color: #93C5FD; }
     .footer-copy { font-size: 0.78rem; color: #475569; }
 
+    /* ── NEWSLETTER & REVIEW SECTIONS ── */
+    .bonus-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .bonus-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px 36px;
+      margin-bottom: 20px;
+    }
+
+    .bonus-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .bonus-card-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .bonus-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .bonus-card p {
+      font-size: 0.9rem;
+      color: #CBD5E1;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .bonus-card p small {
+      color: #475569;
+      font-size: 0.78rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      min-width: 200px;
+      background: var(--navy-inner);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 11px 16px;
+      font-size: 0.9rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .newsletter-input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
+    }
+
+    .newsletter-input::placeholder { color: #475569; }
+
+    .btn-newsletter {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 11px 22px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: background 0.15s, box-shadow 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-newsletter:hover {
+      background: var(--blue-light);
+      box-shadow: 0 0 16px rgba(37,99,235,0.35);
+    }
+
+    .review-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--orange);
+      border-radius: 14px;
+      padding: 32px 36px;
+      text-align: center;
+    }
+
+    .review-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .review-card p {
+      font-size: 0.9rem;
+      color: #CBD5E1;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .review-card p .highlight {
+      color: var(--orange);
+      font-weight: 600;
+    }
+
+    .review-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-review {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--orange);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-review:hover {
+      background: #ea6c0a;
+      box-shadow: 0 0 16px rgba(249,115,22,0.4);
+    }
+
     @media (max-width: 540px) {
       header { padding: 40px 16px 32px; }
       .login-box { padding: 36px 24px; }
@@ -508,17 +728,17 @@
 </head>
 <body>
 
-<!-- ══ ACCESS SCREEN ════════════════════════════════════════════════════ -->
+<!-- ══ ACCESS SCREEN ═══════════════════════════════════════════════════ -->
 <div id="ekran-logowania">
   <div class="login-box">
-    <div class="login-badge">Book 3 · AI Made Simple</div>
+    <div class="login-badge">Book 2 · AI Made Simple</div>
     <h1>Access code</h1>
-    <p>Enter the code from the last page of your e-book<br><strong>AI Made Simple — Book 3</strong></p>
+    <p>Enter the code from the last page of your e-book<br><strong>AI Made Simple — Book 2</strong></p>
     <input
       type="text"
       id="kod-input"
       class="kod-input"
-      placeholder="BOOK3-XXXX"
+      placeholder="BOOK2-XXXX"
       maxlength="10"
       autocomplete="off"
       spellcheck="false"
@@ -526,19 +746,29 @@
     <div class="error-msg" id="error-msg"></div>
     <button class="btn-odblokuj" onclick="sprawdzKod()">🔓 Unlock prompts</button>
     <p class="login-hint">Your code is on the last page of the e-book</p>
+
+    <div class="upsell-block">
+      <span class="upsell-label">🔒 What's inside</span>
+      <p>Unlock <strong>50 ready-to-copy AI prompts</strong> for organisation &amp; planning — weekly schedules, task prioritisation, meeting prep, delegation, and more. This companion page makes copying them effortless.<br><br>Don't have Book 2 yet?</p>
+      <a class="btn-amazon" href="https://ebooks.aidorzeczy.com" target="_blank" rel="noopener">📖 Get it on Amazon →</a>
+    </div>
   </div>
+
+  <p class="amazon-disclaimer">
+    This page is a free, optional companion to <em>AI Made Simple — Book 2</em> (available on Amazon), provided solely to make copying prompts more convenient. All prompts shown here are also available in full text inside the purchased e-book.
+  </p>
 </div>
 
-<!-- ══ MAIN CONTENT ══════════════════════════════════════════════════════ -->
+<!-- ══ MAIN CONTENT ═══════════════════════════════════════════════════ -->
 <div id="tresc">
 
 <header>
   <div class="header-glow"></div>
-  <div class="tom-badge">Book 3 · AI Made Simple</div>
+  <div class="tom-badge">Book 2 · AI Made Simple</div>
   <div class="header-series">AI Made Simple</div>
-  <h1>Book 3: Household Budget &amp; Everyday Money.<br>Take control — no spreadsheets, no stress.</h1>
-  <div class="header-tagline">Take control of your finances — no maths, no spreadsheets, no tech knowledge required.</div>
-  <div class="header-subtitle-small">A plain-English guide for everyone. · Leszek Ignatowicz · book3.aidorzeczy.com</div>
+  <h1>Book 2: Organisation &amp; Planning.<br>Reclaim 5 hours a week.</h1>
+  <div class="header-tagline">How to stop juggling everything in your head — no tech knowledge required.</div>
+  <div class="header-subtitle-small">A plain-English guide for everyone. · Leszek Ignatowicz · book2.aidorzeczy.com</div>
   <div class="header-tip">
     <span class="icon">💡</span>
     Click <strong>Copy prompt</strong>, then paste it into ChatGPT or Claude
@@ -546,11 +776,11 @@
 </header>
 
 <nav class="chapter-nav" id="chapNav">
-  <a class="nav-item active" href="#r1" onclick="setActive(this)">Ch. 1 — Spending</a>
-  <a class="nav-item" href="#r2" onclick="setActive(this)">Ch. 2 — Savings</a>
-  <a class="nav-item" href="#r3" onclick="setActive(this)">Ch. 3 — Deals</a>
-  <a class="nav-item" href="#r4" onclick="setActive(this)">Ch. 4 — Big Purchase</a>
-  <a class="nav-item" href="#r5" onclick="setActive(this)">Ch. 5 — Budget</a>
+  <a class="nav-item active" href="#r1" onclick="setActive(this)">Ch. 1 — Kitchen</a>
+  <a class="nav-item" href="#r2" onclick="setActive(this)">Ch. 2 — Meal Plan</a>
+  <a class="nav-item" href="#r3" onclick="setActive(this)">Ch. 3 — Schedule</a>
+  <a class="nav-item" href="#r4" onclick="setActive(this)">Ch. 4 — Travel</a>
+  <a class="nav-item" href="#r5" onclick="setActive(this)">Ch. 5 — To-Do</a>
   <div class="nav-sep"></div>
   <a class="nav-item" href="#cheatsheet" onclick="setActive(this)">Cheat Sheet</a>
   <a class="nav-item" href="#advanced" onclick="setActive(this)">Advanced</a>
@@ -567,34 +797,33 @@
   <!-- ═══ CHAPTER 1 ═══ -->
   <section class="chapter" id="r1">
     <div class="chapter-header">
-      <div class="chapter-icon">🔎</div>
+      <div class="chapter-icon">🍳</div>
       <div class="chapter-info">
-        <h2>Chapter 1: Where Is All the Money Going?</h2>
-        <p>Prompt No. 1 · Analyse last month's spending and find out where the money actually went</p>
+        <h2>Chapter 1: Your Kitchen Assistant</h2>
+        <p>Prompt No. 1 · Get a recipe built around whatever you already have in the fridge</p>
       </div>
     </div>
     <div class="komenda-card">
       <div class="komenda-head">
         <div class="komenda-label">
           <span class="komenda-num">No. 1</span>
-          <span class="komenda-title">Spending analysis — categories, totals, and 3 places to cut back</span>
+          <span class="komenda-title">Recipe from what I have — dinner sorted in 30 minutes</span>
         </div>
       </div>
       <div class="komenda-body">
-        <div class="komenda-tekst" id="k1">Act as an experienced household accountant.
+        <div class="komenda-tekst" id="k1">Act as an experienced home cook.
 
-Analyse my spending from last month in 3 steps:
+Based on the ingredients I have at home, suggest a specific recipe for tonight's dinner.
 
-1. Group all transactions by category (groceries, transport, bills & utilities, eating out, entertainment, other) and give me a subtotal for each.
+Keep it simple — maximum 30 minutes from start to plate.
 
-2. Identify which category looks disproportionately high compared to a typical household budget.
+Give me: the name of the dish, a list of ingredients with quantities, and numbered cooking steps.
 
-3. Suggest 3 specific areas where I could realistically spend less.
+Ingredients I have: [List what's in your fridge or cupboards, e.g. chicken breast, rice, onion, garlic, tinned tomatoes]
 
-My monthly take-home income: [e.g. $3,500 / £2,800 / €3,000]
+Number of people: [e.g. 2 / family of 4]
 
-My expenses last month (paste your list however it comes):
-[e.g. Supermarket $340, Deliveroo $180, Rent $1,400, Electricity $90, Netflix $18, Spotify $12, Petrol $160, Restaurants $310, Clothing $150, Pharmacy $45]</div>
+What we don't eat or want to avoid: [e.g. no spicy food / no dairy / we don't like fish — or type: no restrictions]</div>
         <div class="komenda-actions">
           <button class="btn-kopiuj" onclick="kopiuj('k1', this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
@@ -606,38 +835,37 @@ My expenses last month (paste your list however it comes):
   <!-- ═══ CHAPTER 2 ═══ -->
   <section class="chapter" id="r2">
     <div class="chapter-header">
-      <div class="chapter-icon">💡</div>
+      <div class="chapter-icon">📅</div>
       <div class="chapter-info">
-        <h2>Chapter 2: Finding Real Savings</h2>
-        <p>Prompt No. 2 · 5 tailored savings ideas — specific to your budget, not generic advice</p>
+        <h2>Chapter 2: The Weekly Meal Planner</h2>
+        <p>Prompt No. 2 · 7-day meal plan plus a ready-to-go shopping list — all in one go</p>
       </div>
     </div>
     <div class="komenda-card">
       <div class="komenda-head">
         <div class="komenda-label">
           <span class="komenda-num">No. 2</span>
-          <span class="komenda-title">5 personalised savings ideas with monthly amounts</span>
+          <span class="komenda-title">Weekly meal plan with shopping list</span>
         </div>
       </div>
       <div class="komenda-body">
-        <div class="komenda-tekst" id="k2">Act as a personal finance advisor who specialises in household savings.
+        <div class="komenda-tekst" id="k2">Act as a nutritionist and experienced home cook.
 
-Review my budget and suggest 5 specific ways I could save money.
+Create a 7-day meal plan for me (Monday through Sunday).
 
-Each suggestion must:
-— be tailored to my actual situation (no generic tips),
-— include an estimated monthly saving in my currency,
-— be realistic without requiring drastic lifestyle changes.
+For each day, give me: breakfast, lunch, and dinner.
 
-My monthly take-home income: [e.g. $3,800]
+Keep the meals simple, quick to prepare, and genuinely enjoyable.
 
-My fixed monthly expenses:
-[e.g. Rent $1,400, loan repayment $350, phone plan $55, internet $45, electricity approx. $90, car insurance $80]
+After the meal plan, add a combined shopping list for the whole week, grouped by category (vegetables, meat, dairy, dry goods).
 
-My variable monthly expenses (approximate):
-[e.g. groceries & household $550, restaurants & coffee out $280, streaming & entertainment $65, clothing $120, petrol $160]
+Number of people: [e.g. 2 adults / family of 4 with children]
 
-What I am absolutely not willing to cut: [e.g. one holiday per year, gym membership, Friday nights out with friends]</div>
+Approximate weekly food budget: [e.g. $100 / $150 / flexible]
+
+What we don't eat or want to avoid: [e.g. no pork / no gluten / we don't like fish — or: no restrictions]
+
+Cuisine style we enjoy: [e.g. Italian, Asian, Mediterranean — or: no preference]</div>
         <div class="komenda-actions">
           <button class="btn-kopiuj" onclick="kopiuj('k2', this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
@@ -649,39 +877,39 @@ What I am absolutely not willing to cut: [e.g. one holiday per year, gym members
   <!-- ═══ CHAPTER 3 ═══ -->
   <section class="chapter" id="r3">
     <div class="chapter-header">
-      <div class="chapter-icon">⚖️</div>
+      <div class="chapter-icon">🕐</div>
       <div class="chapter-info">
-        <h2>Chapter 3: Comparing Deals — Cut Through the Small Print</h2>
-        <p>Prompt No. 3 · Comparison table, hidden costs flagged, clear recommendation</p>
+        <h2>Chapter 3: Your Daily Schedule — Sorted</h2>
+        <p>Prompt No. 3 · Turn a chaotic task list into a realistic hour-by-hour plan</p>
       </div>
     </div>
     <div class="komenda-card">
       <div class="komenda-head">
         <div class="komenda-label">
           <span class="komenda-num">No. 3</span>
-          <span class="komenda-title">Deal comparison with recommendation</span>
+          <span class="komenda-title">Daily schedule from tasks in any order</span>
         </div>
       </div>
       <div class="komenda-body">
-        <div class="komenda-tekst" id="k3">Act as an independent consumer advisor.
+        <div class="komenda-tekst" id="k3">Act as a highly efficient personal assistant.
 
-Compare the following offers and help me choose the best one. Do this in 3 steps:
+Create a detailed schedule for my day based on the tasks below.
 
-1. Build a clear comparison table of all the offers
+For each task, give me a suggested start time and estimated duration.
 
-2. Flag any hidden costs, gotchas, or red flags you can spot
+Build in breaks and realistic travel time between locations.
 
-3. Give me your recommendation in 2 sentences with a reason
+Make sure the plan is actually achievable — don't cram everything in.
 
-What I'm comparing: [Type of product or service, e.g. broadband, car insurance, mobile phone plan, bank account, energy tariff]
+Time I wake up: [e.g. 7:00 am]
 
-Deal A: [e.g. Provider X: $55/month, 500 Mbps, 24-month contract, free router included]
+Time I want to wrap everything up by: [e.g. 8:00 pm]
 
-Deal B: [e.g. Provider Y: $45/month, 150 Mbps, no contract, router costs $120 extra]
+My tasks for today (write them in any order, as messily as you like):
+[e.g. drop the car at the garage, call the doctor's surgery, send an important email, do the grocery shopping, pick up the kids from school at 3:30 pm, make dinner]
 
-Deal C (if you have one): [Details, or leave blank]
-
-What matters most to me: [e.g. lowest monthly cost / no contract lock-in / fastest speed / reliable customer service]</div>
+Any fixed commitments or blocks I can't move?
+[e.g. work meeting 10:00–11:30 am / or: none, I'm flexible today]</div>
         <div class="komenda-actions">
           <button class="btn-kopiuj" onclick="kopiuj('k3', this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
@@ -693,38 +921,41 @@ What matters most to me: [e.g. lowest monthly cost / no contract lock-in / faste
   <!-- ═══ CHAPTER 4 ═══ -->
   <section class="chapter" id="r4">
     <div class="chapter-header">
-      <div class="chapter-icon">🛒</div>
+      <div class="chapter-icon">✈️</div>
       <div class="chapter-info">
-        <h2>Chapter 4: Big Purchases — Can I Actually Afford This?</h2>
-        <p>Prompt No. 4 · Honest financial assessment — upfront or instalments, or a savings plan if needed</p>
+        <h2>Chapter 4: Your Holiday &amp; Trip Planner</h2>
+        <p>Prompt No. 4 · Full itinerary, packing list, and insider tips — in one conversation</p>
       </div>
     </div>
     <div class="komenda-card">
       <div class="komenda-head">
         <div class="komenda-label">
           <span class="komenda-num">No. 4</span>
-          <span class="komenda-title">Financial assessment of a significant purchase</span>
+          <span class="komenda-title">Complete trip plan with packing list</span>
         </div>
       </div>
       <div class="komenda-body">
-        <div class="komenda-tekst" id="k4">Act as a sensible, straight-talking household financial advisor.
+        <div class="komenda-tekst" id="k4">Act as an experienced travel guide and trip organiser.
 
-Help me decide whether to go ahead with a significant purchase. Do this in 3 steps:
+Help me plan a trip. Please prepare:
 
-1. Assess whether I can genuinely afford this given my current budget
+1. A day-by-day itinerary with suggested times
 
-2. If yes — advise whether paying upfront or in instalments makes more financial sense, and what to watch out for
+2. The top 5 must-see highlights — with a brief note on each
 
-3. If it's a stretch — give me a realistic savings plan with a monthly amount and a target date
+3. A packing list tailored to the season and type of trip
 
-What I want to buy: [e.g. new laptop approx. $1,200 / bathroom renovation approx. $8,000 / used car approx. $12,000]
+4. Three practical tips that most tourists miss
 
-My monthly take-home income: [e.g. $3,500]
+Destination: [City, region, or country, e.g. Lisbon / Tuscany / Japan]
 
-My fixed monthly commitments: [e.g. rent $1,200, loan repayment $350, bills approx. $200]
+Length of trip: [e.g. 3 days / one week]
 
-My current savings: [e.g. $4,500 / or: none at the moment]
-Employment situation: [e.g. permanent job / freelance / fixed-term contract]</div>
+Who's travelling: [e.g. solo / couple / family with kids aged 6 and 10]
+
+What we enjoy: [e.g. history and museums / active outdoor days / beach and relaxation / great food and local restaurants / wandering through old town streets]
+
+Budget level: [e.g. budget-conscious / mid-range / no restrictions]</div>
         <div class="komenda-actions">
           <button class="btn-kopiuj" onclick="kopiuj('k4', this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
@@ -736,37 +967,34 @@ Employment situation: [e.g. permanent job / freelance / fixed-term contract]</di
   <!-- ═══ CHAPTER 5 ═══ -->
   <section class="chapter" id="r5">
     <div class="chapter-header">
-      <div class="chapter-icon">📊</div>
+      <div class="chapter-icon">📋</div>
       <div class="chapter-info">
-        <h2>Chapter 5: Your Simple Monthly Budget</h2>
-        <p>Prompt No. 5 · A realistic budget with 6–7 categories — no spreadsheet, no daily logging</p>
+        <h2>Chapter 5: Get on Top of Your To-Do List</h2>
+        <p>Prompt No. 5 · Priority table with a concrete next step for every item</p>
       </div>
     </div>
     <div class="komenda-card">
       <div class="komenda-head">
         <div class="komenda-label">
           <span class="komenda-num">No. 5</span>
-          <span class="komenda-title">Simple monthly household budget plan</span>
+          <span class="komenda-title">Priority table with next steps for everything on your mind</span>
         </div>
       </div>
       <div class="komenda-body">
-        <div class="komenda-tekst" id="k5">Act as a practical, no-nonsense budget advisor.
+        <div class="komenda-tekst" id="k5">Act as a highly organised personal assistant.
 
-Create a simple, realistic monthly household budget for me.
+Help me get on top of everything I need to deal with.
 
-Keep it easy to use — I don't want to track every single transaction.
+Based on my list, create:
 
-Suggest a maximum of 6–7 categories with a clear spending limit for each.
+1. A priority table: Urgent & Important / Important but not urgent / Can wait
 
-Include a recommended monthly savings amount and a suggested purpose for it.
+2. For each item: one concrete "next step" — the single specific action I need to take to move it forward
 
-My monthly take-home income: [e.g. $3,800]
+3. If anything has a hard deadline, flag it clearly with the date
 
-Fixed expenses I can't avoid:
-[e.g. rent $1,200, loan repayment $350, phone $50, internet $40]
-
-My current financial priorities:
-[e.g. build an emergency fund / pay off credit card debt / save for a holiday / just stop going further into the red]</div>
+Here's everything on my mind right now (write as messily as you like):
+[e.g. book a dentist appointment, renew car insurance, call back my sister, order new glasses, file my tax return by end of month, fix the leaky kitchen tap]</div>
         <div class="komenda-actions">
           <button class="btn-kopiuj" onclick="kopiuj('k5', this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
@@ -788,13 +1016,13 @@ My current financial priorities:
       <div class="komenda-body" style="padding:20px 24px;">
         <p style="color:var(--muted);font-size:0.88rem;margin-bottom:12px;">These are condensed versions. The full prompts in each chapter give the AI more context and produce better results.</p>
         <p style="color:var(--white);font-size:0.9rem;margin:0;">
-          <strong>No. 1</strong> — Spending analysis → Ch. 1 &nbsp;|&nbsp;
-          <strong>No. 2</strong> — Savings ideas → Ch. 2 &nbsp;|&nbsp;
-          <strong>No. 3</strong> — Deal comparison → Ch. 3 &nbsp;|&nbsp;
-          <strong>No. 4</strong> — Big purchase → Ch. 4 &nbsp;|&nbsp;
-          <strong>No. 5</strong> — Monthly budget → Ch. 5
+          <strong>No. 1</strong> — Fridge recipe → Ch. 1 &nbsp;|&nbsp;
+          <strong>No. 2</strong> — Meal plan → Ch. 2 &nbsp;|&nbsp;
+          <strong>No. 3</strong> — Daily schedule → Ch. 3 &nbsp;|&nbsp;
+          <strong>No. 4</strong> — Trip planner → Ch. 4 &nbsp;|&nbsp;
+          <strong>No. 5</strong> — Priority list → Ch. 5
         </p>
-        <p style="color:var(--muted);font-size:0.85rem;margin-top:12px;">All prompts also available at <a href="https://book3.aidorzeczy.com" style="color:var(--orange);">book3.aidorzeczy.com</a></p>
+        <p style="color:var(--muted);font-size:0.85rem;margin-top:12px;">All prompts also available at <a href="https://book2.aidorzeczy.com" style="color:var(--orange);">book2.aidorzeczy.com</a></p>
       </div>
     </div>
   </section>
@@ -805,7 +1033,7 @@ My current financial priorities:
       <div class="chapter-icon">🚀</div>
       <div class="chapter-info">
         <h2>Advanced Prompts — Appendix 2</h2>
-        <p>Prompts No. 6–10 · More powerful versions for complex financial situations</p>
+        <p>Prompts No. 6–10 · More powerful versions for trickier situations</p>
       </div>
     </div>
 
@@ -813,31 +1041,21 @@ My current financial priorities:
       <div class="komenda-head">
         <div class="komenda-label">
           <span class="komenda-num">No. 6</span>
-          <span class="komenda-title">Your annual financial review</span>
+          <span class="komenda-title">Dinner from almost nothing — last-minute, near-empty fridge</span>
         </div>
       </div>
       <div class="komenda-body">
-        <div class="komenda-tekst" id="k6">Act as a combined accountant and financial advisor.
+        <div class="komenda-tekst" id="k6">Act as a genius improvising chef.
 
-Help me do an annual review of my finances in 4 steps:
+I have almost nothing left in the fridge and very little time.
 
-1. Calculate total spending in each category across the whole year
+Suggest something quick and genuinely edible — maximum 15 minutes.
 
-2. Identify which month had the highest spending and explore why
+If I'm missing something, tell me the best substitute.
 
-3. Give me the 3 most important financial lessons from this year
-
-4. Suggest 3 concrete financial goals for the year ahead
-
-My average monthly take-home income this year: [amount]
-
-Monthly spending (approximations are fine):
-[e.g. January $2,800 / February $2,600 / March $3,100 / April $2,900 / May $3,000 / June $4,200 (holiday) ...]
-
-Major one-off expenses this year: [e.g. new boiler $3,200 / car $9,000]
-
-Any financial surprises this year — good or bad:
-[e.g. unexpectedly high energy bills / redundancy payment / medical expense I didn't plan for]</div>
+What I have: [Even a very short list works, e.g. eggs, pasta, butter, garlic]
+Time available: [e.g. 10–15 minutes]
+Number of people: [e.g. 2]</div>
         <div class="komenda-actions">
           <button class="btn-kopiuj" onclick="kopiuj('k6', this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
@@ -849,26 +1067,22 @@ Any financial surprises this year — good or bad:
       <div class="komenda-head">
         <div class="komenda-label">
           <span class="komenda-num">No. 7</span>
-          <span class="komenda-title">Saving towards a specific goal</span>
+          <span class="komenda-title">Meal plan for a picky eater</span>
         </div>
       </div>
       <div class="komenda-body">
-        <div class="komenda-tekst" id="k7">Act as a financial coach who specialises in goal-based saving.
+        <div class="komenda-tekst" id="k7">Act as a paediatric nutritionist with plenty of real-world experience.
 
-I want to save up a specific amount for a specific purpose. Create for me:
+Create a weekly meal plan for a picky eater.
 
-1. A realistic monthly savings plan with a specific amount per month
+Meals should be tasty, nutritious, and take no more than 20 minutes to prepare.
 
-2. Optional strategies to reach the goal faster (without extreme sacrifice)
+Introduce anything new very gently — the goal is meals they'll actually eat without a fight.
 
-3. What to do if I miss a month — how to get back on track
-
-My goal: [What I'm saving for, e.g. emergency fund of $5,000 / holiday fund $3,000 / house deposit contribution $15,000]
-Target timeframe: [e.g. 12 months / 18 months / no fixed deadline]
-How much I can currently save per month: [e.g. approx. $200–250]
-
-My monthly income and main commitments:
-[e.g. $3,500 take-home / $2,100 in fixed expenses]</div>
+Child's age: [e.g. 7 years old]
+What they like: [e.g. pasta, chips, chicken, apples, yoghurt]
+What they absolutely refuse: [e.g. fish, anything green, soup]
+Weekly food budget: [e.g. $60 / £40]</div>
         <div class="komenda-actions">
           <button class="btn-kopiuj" onclick="kopiuj('k7', this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
@@ -880,24 +1094,20 @@ My monthly income and main commitments:
       <div class="komenda-head">
         <div class="komenda-label">
           <span class="komenda-num">No. 8</span>
-          <span class="komenda-title">Spot the hidden charges in a contract</span>
+          <span class="komenda-title">Emergency reschedule after the day falls apart</span>
         </div>
       </div>
       <div class="komenda-body">
-        <div class="komenda-tekst" id="k8">Act as a sharp, experienced consumer rights lawyer.
+        <div class="komenda-tekst" id="k8">Act as a calm, practical crisis assistant.
 
-Review the document below (contract, terms, or pricing schedule) for hidden costs and financial risks. Do this in 3 steps:
+My day has just been derailed by something unexpected.
 
-1. Identify all hidden fees, penalties, and financial gotchas
+Help me rebuild a realistic plan for the rest of the day, salvaging as much of the original schedule as possible.
 
-2. Flag any clauses that could catch me off guard financially
-
-3. Give me 3 specific questions to ask the provider before I sign anything
-
-Type of document: [e.g. broadband contract / car lease agreement / insurance policy / gym membership terms]
-
-Document content (paste below):
-[Paste the contract text or the sections that concern you. Remove any personal details — name, address, account numbers — before pasting.]</div>
+What happened: [Brief description, e.g. my child is sick and I need to stay home / the car broke down and I've lost transport for the day]
+Current time: [e.g. 11:00 am]
+What absolutely must still happen today: [e.g. pick up a prescription, send an urgent email]
+The rest of my original plan: [List what you had planned]</div>
         <div class="komenda-actions">
           <button class="btn-kopiuj" onclick="kopiuj('k8', this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
@@ -909,27 +1119,22 @@ Document content (paste below):
       <div class="komenda-head">
         <div class="komenda-label">
           <span class="komenda-num">No. 9</span>
-          <span class="komenda-title">Buy new, buy used, or rent? Let's run the numbers</span>
+          <span class="komenda-title">Last-minute weekend getaway</span>
         </div>
       </div>
       <div class="komenda-body">
-        <div class="komenda-tekst" id="k9">Act as an experienced financial advisor.
+        <div class="komenda-tekst" id="k9">Act as an expert in spontaneous travel.
 
-Help me decide: buy new, buy used, or rent? Do this in 3 steps:
+We want to get away this weekend — leaving tomorrow.
 
-1. Calculate the total cost of each option over 3–5 years (including maintenance, depreciation, and other likely costs)
+Suggest a specific destination within about 3 hours of our city and give us a ready-made 2-day plan.
 
-2. Tell me which option is financially better — and why
+Include: where to stay (budget and comfortable options), where to eat (at least one spot with great local food), what to see and do, and what to throw in a bag.
 
-3. List what I should check or verify before making a final decision
-
-What this decision is about: [e.g. car / washing machine / camera equipment / apartment]
-
-Option 1 — Buy new: [e.g. price $28,000 / or monthly finance payment $420 over 4 years]
-Option 2 — Buy used: [e.g. price $14,000 / age: 3 years / mileage: 45,000]
-Option 3 — Rent / lease (if applicable): [e.g. $320/month, no long-term commitment]
-
-My situation: [e.g. I drive a lot / reliability is critical / I prefer not to be locked into a long-term commitment]</div>
+Our city: [e.g. London / Berlin / New York / Sydney]
+Who's coming: [e.g. couple / family with children]
+What we enjoy: [e.g. nature and hiking / culture and history / relaxation]
+Budget: [e.g. budget-friendly / mid-range]</div>
         <div class="komenda-actions">
           <button class="btn-kopiuj" onclick="kopiuj('k9', this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
@@ -941,29 +1146,28 @@ My situation: [e.g. I drive a lot / reliability is critical / I prefer not to be
       <div class="komenda-head">
         <div class="komenda-label">
           <span class="komenda-num">No. 10</span>
-          <span class="komenda-title">What to do with an unexpected windfall</span>
+          <span class="komenda-title">The big monthly reset — plan the whole month at once</span>
         </div>
       </div>
       <div class="komenda-body">
-        <div class="komenda-tekst" id="k10">Act as a careful, experienced financial advisor.
+        <div class="komenda-tekst" id="k10">Act as a personal life planner.
 
-I've just received an unexpected sum of money and I want to make good use of it.
+Help me plan the month ahead.
 
-Suggest a sensible split across 3 purposes:
+Based on my information, create:
 
-1. Security — emergency fund, paying down debt
+1. A prioritised list of everything I need to get done this month
 
-2. Goals — saving towards something specific
+2. A loose week-by-week skeleton (which week for what)
 
-3. Enjoyment — because a reward is part of the plan too
+3. The 3 most important things I absolutely cannot let slip through the cracks
 
-Justify each split with specific amounts and a clear reason.
-
-Amount received: [e.g. $2,500 / £3,000 / €4,000]
-Where it came from: [e.g. work bonus / tax refund / sold something / inheritance]
-
-My current financial situation:
-[e.g. no emergency fund / credit card debt of $1,800 / finances broadly stable / big expense coming up in 3 months]</div>
+Month: [e.g. October 2026]
+Key dates and deadlines: [e.g. dentist on the 8th, sister's birthday on the 22nd, quarterly tax payment due by the 15th]
+Bigger projects or household tasks this month:
+[e.g. redecorate the spare room, organise a birthday party for the kids, sort out pension paperwork]
+What I want to protect for rest and myself:
+[e.g. gym twice a week, one evening per fortnight with no plans]</div>
         <div class="komenda-actions">
           <button class="btn-kopiuj" onclick="kopiuj('k10', this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
@@ -975,13 +1179,84 @@ My current financial situation:
 
 </main>
 
+<!-- ══ NEWSLETTER & REVIEW ══════════════════════════════════════════════ -->
+<div class="bonus-section">
+
+  <!-- Newsletter -->
+  <div class="bonus-card">
+    <div class="bonus-card-header">
+      <div class="bonus-card-icon">✉️</div>
+      <h3>Join the AI community and get your bonuses</h3>
+    </div>
+    <p>Sign up for my free newsletter to receive updates on new prompts, AI tool news, and upcoming books in the series.</p>
+    <div class="newsletter-form">
+      <input class="newsletter-input" type="email" id="nl2-email" placeholder="Your best email address">
+      <button class="btn-newsletter" id="nl2-btn" onclick="nlSubmit('nl2')">Sign me up →</button>
+    </div>
+    <div id="nl2-msg" style="min-height:18px;margin-top:10px;font-size:0.82rem;"></div>
+    <p style="margin-top:8px;margin-bottom:0;"><small>No spam. Unsubscribe at any time.</small></p>
+  </div>
+
+  <script>
+  async function nlSubmit(id) {
+    const email = document.getElementById(id+'-email').value.trim();
+    const msg   = document.getElementById(id+'-msg');
+    const btn   = document.getElementById(id+'-btn');
+    if (!email || !email.includes('@')) {
+      msg.style.color = '#EF4444';
+      msg.textContent = 'Please enter a valid email address.';
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    msg.textContent = '';
+    try {
+      const r = await fetch('https://formspree.io/f/mkoqlrqa', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, _subject: 'New subscriber — AI Made Simple Newsletter' })
+      });
+      if (r.ok) {
+        msg.style.color = '#22C55E';
+        msg.textContent = '✓ You\'re on the list!';
+        btn.textContent = '✓ Done!';
+        btn.style.background = 'var(--green-dim, #15803D)';
+        document.getElementById(id+'-email').value = '';
+      } else {
+        const d = await r.json();
+        msg.style.color = '#EF4444';
+        msg.textContent = d.errors ? d.errors.map(e=>e.message).join(', ') : 'Something went wrong. Try again.';
+        btn.disabled = false;
+        btn.textContent = 'Sign me up →';
+      }
+    } catch(e) {
+      msg.style.color = '#EF4444';
+      msg.textContent = 'Connection error. Please try again.';
+      btn.disabled = false;
+      btn.textContent = 'Sign me up →';
+    }
+  }
+  </script>
+  <div class="review-card">
+    <h3>Did my prompts make your life easier?</h3>
+    <p>Your opinion is the fuel for this series. If the knowledge in my ebooks saved you time, <span class="highlight">leaving a short, honest review on Amazon takes 30 seconds</span> — and helps me reach more people.</p>
+    <div class="review-buttons">
+      <a class="btn-review" href="LINK_DO_RECENZJI_TOM1_NA_AMAZONIE" target="_blank" rel="noopener">⭐ Review Book 1</a>
+      <a class="btn-review" href="LINK_DO_RECENZJI_TOM2_NA_AMAZONIE" target="_blank" rel="noopener">⭐ Review Book 2</a>
+      <a class="btn-review" href="LINK_DO_RECENZJI_TOM3_NA_AMAZONIE" target="_blank" rel="noopener">⭐ Review Book 3</a>
+    </div>
+  </div>
+
+</div>
+
 <footer>
   <div class="footer-tomy">
     <a class="footer-tom-link coming" href="https://book1.aidorzeczy.com">Book 1 — Communication &amp; Difficult Emails</a>
-    <a class="footer-tom-link coming" href="https://book2.aidorzeczy.com">Book 2 — Organisation &amp; Planning</a>
-    <a class="footer-tom-link current" href="#">★ Book 3 — you are here</a>
+    <a class="footer-tom-link current" href="#">★ Book 2 — you are here</a>
+    <a class="footer-tom-link coming" href="https://book3.aidorzeczy.com">Book 3 — Household Budget</a>
   </div>
-  <p class="footer-copy">AI Made Simple · Leszek Ignatowicz · book3.aidorzeczy.com</p>
+  <p class="footer-copy">AI Made Simple · Leszek Ignatowicz · book2.aidorzeczy.com</p>
+  <p class="amazon-disclaimer" style="max-width:680px;margin:12px auto 0;">This page is a free, optional companion to <em>AI Made Simple — Book 2</em> (available on Amazon), provided solely to make copying prompts more convenient. All prompts shown here are also available in full text inside the purchased e-book.</p>
 </footer>
 
 </div><!-- koniec #tresc -->
@@ -989,15 +1264,15 @@ My current financial situation:
 <script>
   // ═══════════════════════════════════════════════════════
   // ZMIEŃ TEN KOD NA WŁAŚCIWY PRZED PUBLIKACJĄ
-  // Enter this on the last page of Book 3 as well
+  // Enter this on the last page of Book 2 as well
   // ═══════════════════════════════════════════════════════
   // Akceptowane kody (case-insensitive, prefiks opcjonalny)
-  const SUFIKSY = ['AIXB'];
-  const KLUCZ = 'dostep_book3_en';
+  const SUFIKSY = ['MN3H', 'XXXX'];
+  const KLUCZ = 'dostep_book2_en';
 
   function kodPoprawny(wpisany) {
     const u = wpisany.trim().toUpperCase();
-    return SUFIKSY.some(s => u === s || u === 'BOOK3-' + s);
+    return SUFIKSY.some(s => u === s || u === 'BOOK2-' + s);
   }
 
   function sprawdzKod() {
