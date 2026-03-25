@@ -344,6 +344,7 @@
       border-bottom: 1px solid var(--border);
       padding: 0 20px;
       display: flex;
+      justify-content: center;
       gap: 4px;
       overflow-x: auto;
       scrollbar-width: none;
@@ -715,6 +716,29 @@
       .btn-kopiuj { width: 100%; justify-content: center; }
       .komenda-actions { flex-direction: column; align-items: flex-start; }
     }
+
+    /* ── DOMINATE HEADLINE ── */
+    .dominate-headline {
+      font-family: 'Outfit', Arial, sans-serif;
+      font-size: clamp(1.1rem, 3.5vw, 1.75rem);
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #F97316 0%, #FBBF24 40%, #F97316 80%, #FB923C 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+      filter: drop-shadow(0 0 18px rgba(249,115,22,0.45));
+    }
+    @keyframes shimmer {
+      from { background-position: 0% center; }
+      to   { background-position: 200% center; }
+    }
   </style>
 </head>
 <body>
@@ -740,7 +764,7 @@
 
     <div class="upsell-block">
       <span class="upsell-label">🔒 What's inside</span>
-      <p>Unlock <strong>50 ready-to-copy AI prompts</strong> for household budget &amp; everyday money — expense tracking, bill negotiation, savings planning, and more. This companion page makes copying them effortless.<br><br>Don't have Book 3 yet?</p>
+      <p>Unlock <strong>10 ready-to-copy AI prompts</strong> for household budget &amp; everyday money — expense tracking, bill negotiation, savings planning, and more. This companion page makes copying them effortless.<br><br>Don't have Book 3 yet?</p>
       <a class="btn-amazon" href="https://ebooks.aidorzeczy.com" target="_blank" rel="noopener">📖 Get it on Amazon →</a>
     </div>
   </div>
@@ -755,9 +779,9 @@
 
 <header>
   <div class="header-glow"></div>
-  <div class="tom-badge">Book 3 · AI Made Simple</div>
+  <div class="dominate-headline">AI MADE SIMPLE: DOMINATE YOUR FUTURE</div>
   <div class="header-series">AI Made Simple</div>
-  <h1>Book 3: Household Budget &amp; Everyday Money.<br>Take control — no spreadsheets, no stress.</h1>
+  <h1 style="font-size:clamp(1rem,2.5vw,1.5rem);font-weight:700;">Book 3: Household Budget &amp; Everyday Money.<br>Take control — no spreadsheets, no stress.</h1>
   <div class="header-tagline">Take control of your finances — no maths, no spreadsheets, no tech knowledge required.</div>
   <div class="header-subtitle-small">A plain-English guide for everyone. · Leszek Ignatowicz · book3.aidorzeczy.com</div>
   <div class="header-tip">
