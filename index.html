@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Made Simple · Book 3 · Ready-to-Copy Prompts</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link href="./AI Made Simple · Book 3 · Ready-to-Copy Prompts_files/css2" rel="stylesheet">
   <style>
     :root {
       --navy:       #0E1C36;
@@ -54,9 +53,17 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       padding: 24px;
       overflow-y: auto;
+    }
+
+    .logowanie-wrapper {
+      margin: auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
     }
 
     .login-box {
@@ -610,53 +617,6 @@
 
     .bonus-card p small { color: #475569; font-size: 0.78rem; }
 
-    .newsletter-form {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .newsletter-input {
-      flex: 1;
-      min-width: 200px;
-      background: var(--navy-inner);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 11px 16px;
-      font-size: 0.9rem;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--white);
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .newsletter-input:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
-    }
-
-    .newsletter-input::placeholder { color: #475569; }
-
-    .btn-newsletter {
-      background: var(--blue);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 11px 22px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      font-family: 'DM Sans', sans-serif;
-      cursor: pointer;
-      transition: background 0.15s, box-shadow 0.15s;
-      white-space: nowrap;
-    }
-
-    .btn-newsletter:hover {
-      background: var(--blue-light);
-      box-shadow: 0 0 16px rgba(37,99,235,0.35);
-    }
-
     .review-card {
       background: var(--navy-card);
       border: 1px solid var(--border);
@@ -743,82 +703,75 @@
 </head>
 <body>
 
-<!-- ══ ACCESS SCREEN ════════════════════════════════════════════════════ -->
 <div id="ekran-logowania">
-  <div class="login-box">
-    <div class="login-badge">Book 3 · AI Made Simple</div>
-    <h1>Access code</h1>
-    <p>Enter the code from the last page of your e-book<br><strong>AI Made Simple — Book 3</strong></p>
-    <input
-      type="text"
-      id="kod-input"
-      class="kod-input"
-      placeholder="BOOK3-XXXX"
-      maxlength="10"
-      autocomplete="off"
-      spellcheck="false"
-    >
-    <div class="error-msg" id="error-msg"></div>
-    <button class="btn-odblokuj" onclick="sprawdzKod()">🔓 Unlock prompts</button>
-    <p class="login-hint">Your code is on the last page of the e-book</p>
-
-    <div class="upsell-block">
-      <span class="upsell-label">🔒 What's inside</span>
-      <p>Unlock <strong>10 ready-to-copy AI prompts</strong> for household budget &amp; everyday money — expense tracking, bill negotiation, savings planning, and more. This companion page makes copying them effortless.<br><br>Don't have Book 3 yet?</p>
-      <a class="btn-amazon" href="https://ebooks.aidorzeczy.com" target="_blank" rel="noopener">📖 Get it on Amazon →</a>
+  <div class="logowanie-wrapper">
+    <div style="text-align:center;margin-bottom:28px;">
+      <div class="dominate-headline" style="margin-bottom:6px;">DON&rsquo;T FEAR AI: DOMINATE YOUR FUTURE</div>
+      <div style="font-family:'DM Sans',sans-serif;font-size:1rem;color:var(--muted);letter-spacing:0.02em;">AI Made Simple</div>
     </div>
+    
+    <div class="login-box">
+      <div class="login-badge">Book 3 · AI Made Simple</div>
+      <h1>Access code</h1>
+      <p>Enter the code from the last page of your e-book<br><strong>AI Made Simple — Book 3</strong></p>
+      <input type="text" id="kod-input" class="kod-input" placeholder="BOOK3-XXXX" maxlength="10" autocomplete="off" spellcheck="false">
+      <div class="error-msg" id="error-msg"></div>
+      <button class="btn-odblokuj" onclick="sprawdzKod()">🔓 Unlock prompts</button>
+      <p class="login-hint">Your code is on the last page of the e-book</p>
 
-    <div class="upsell-block" style="margin-top:20px;">
-      <span class="upsell-label">✉️ Free newsletter</span>
-      <p>Not ready to buy yet? <strong>Get free AI tips, new prompts &amp; updates</strong> — straight to your inbox. No spam, unsubscribe any time.</p>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;">
-        <input
-          type="email"
-          id="nl-lock-email"
-          placeholder="Your best email address"
-          style="flex:1;min-width:0;background:var(--navy-inner);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:0.88rem;color:var(--white);outline:none;font-family:'DM Sans',sans-serif;"
-        >
-        <button
-          id="nl-lock-btn"
-          onclick="nlLockSubmit()"
-          style="background:var(--orange);color:#fff;border:none;border-radius:8px;padding:10px 18px;font-size:0.88rem;font-weight:700;cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif;transition:background 0.2s;"
-          onmouseover="this.style.background='#ea6c0a'" onmouseout="this.style.background='var(--orange)'"
-        >Sign me up →</button>
+      <div class="upsell-block">
+        <span class="upsell-label">🔒 What's inside</span>
+        <p>Unlock <strong>10 ready-to-copy AI prompts</strong> for household budget &amp; everyday money — expense tracking, bill negotiation, savings planning, and more. This companion page makes copying them effortless.<br><br>Don't have Book 3 yet?</p>
+        <a class="btn-amazon" href="https://ebooks.aidorzeczy.com/" target="_blank" rel="noopener">📖 Get it on Amazon →</a>
       </div>
-      <div id="nl-lock-msg" style="min-height:16px;margin-top:8px;font-size:0.82rem;"></div>
-    </div>
-  </div>
 
-  <p class="amazon-disclaimer">
-    This page is a free, optional companion to <em>AI Made Simple — Book 3</em> (available on Amazon), provided solely to make copying prompts more convenient. All prompts shown here are also available in full text inside the purchased e-book.
-  </p>
+      <div class="upsell-block" style="margin-top:20px;">
+        <span class="upsell-label">✉️ Free newsletter</span>
+        <p>Not ready to buy yet? <strong>Get free AI tips, new prompts &amp; updates</strong> — straight to your inbox. No spam, unsubscribe any time.</p>
+        
+        <div style="display:flex;align-items:center;gap:14px;margin:14px 0 10px;flex-wrap:wrap;">
+          <span style="font-size:2rem;animation:pointRight 1.2s ease-in-out infinite;display:inline-block;">&#x1F449;</span>
+          <a href="https://ebooks.aidorzeczy.com/#community" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;text-decoration:none;background:#2563eb;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:700;padding:11px 22px;border-radius:8px;box-shadow:0 4px 16px rgba(37,99,235,0.4);">
+            Sign me up →
+          </a>
+        </div>
+        <style>@keyframes pointRight{0%,100%{transform:translateX(0)}50%{transform:translateX(9px)}}</style>
+        
+        <p style="margin-top:10px;margin-bottom:0;font-size:0.72rem;color:#475569;line-height:1.6;">By signing up, you agree to receive my newsletter and the free bonus. We process your email via Mailchimp to deliver this content. You can unsubscribe at any time. See our <a href="https://privacy.aidorzeczy.com" target="_blank" rel="noopener" style="color:#64748B;text-decoration:underline;">Privacy Policy</a> for details.</p>
+      </div>
+    </div>
+
+    <p class="amazon-disclaimer">
+      This page is a free, optional companion to <em>AI Made Simple — Book 3</em> (available on Amazon), provided solely to make copying prompts more convenient. All prompts shown here are also available in full text inside the purchased e-book.
+    </p>
+  </div>
 </div>
 
-<!-- ══ MAIN CONTENT ══════════════════════════════════════════════════════ -->
 <div id="tresc">
 
 <header>
   <div class="header-glow"></div>
-  <div class="dominate-headline">AI MADE SIMPLE: DOMINATE YOUR FUTURE</div>
+  <div class="dominate-headline">DON’T FEAR AI: DOMINATE YOUR FUTURE</div>
   <div class="header-series">AI Made Simple</div>
   <h1 style="font-size:clamp(1rem,2.5vw,1.5rem);font-weight:700;">Book 3: Household Budget &amp; Everyday Money.<br>Take control — no spreadsheets, no stress.</h1>
   <div class="header-tagline">Take control of your finances — no maths, no spreadsheets, no tech knowledge required.</div>
   <div class="header-subtitle-small">A plain-English guide for everyone. · Leszek Ignatowicz · book3.aidorzeczy.com</div>
   <div class="header-tip">
     <span class="icon">💡</span>
-    Click <strong>Copy prompt</strong>, then paste it into ChatGPT or Claude
+    Click <strong>Copy prompt</strong>, then paste it into ChatGPT
   </div>
 </header>
 
 <nav class="chapter-nav" id="chapNav">
-  <a class="nav-item active" href="#r1" onclick="setActive(this)">Ch. 1 — Spending</a>
-  <a class="nav-item" href="#r2" onclick="setActive(this)">Ch. 2 — Savings</a>
-  <a class="nav-item" href="#r3" onclick="setActive(this)">Ch. 3 — Deals</a>
-  <a class="nav-item" href="#r4" onclick="setActive(this)">Ch. 4 — Big Purchase</a>
-  <a class="nav-item" href="#r5" onclick="setActive(this)">Ch. 5 — Budget</a>
+  <a class="nav-item active" href="https://book3.aidorzeczy.com/#r1" onclick="setActive(this)">Ch. 1 — Spending</a>
+  <a class="nav-item" href="https://book3.aidorzeczy.com/#r2" onclick="setActive(this)">Ch. 2 — Savings</a>
+  <a class="nav-item" href="https://book3.aidorzeczy.com/#r3" onclick="setActive(this)">Ch. 3 — Deals</a>
+  <a class="nav-item" href="https://book3.aidorzeczy.com/#r4" onclick="setActive(this)">Ch. 4 — Big Purchase</a>
+  <a class="nav-item" href="https://book3.aidorzeczy.com/#r5" onclick="setActive(this)">Ch. 5 — Budget</a>
   <div class="nav-sep"></div>
-  <a class="nav-item" href="#cheatsheet" onclick="setActive(this)">Cheat Sheet</a>
-  <a class="nav-item" href="#advanced" onclick="setActive(this)">Advanced</a>
+  <a class="nav-item" href="https://book3.aidorzeczy.com/#cheatsheet" onclick="setActive(this)">Cheat Sheet</a>
+  <a class="nav-item" href="https://book3.aidorzeczy.com/#advanced" onclick="setActive(this)">Advanced</a>
 </nav>
 
 <main>
@@ -829,7 +782,6 @@
     <span class="progress-count" id="progressCount">0 / 10</span>
   </div>
 
-  <!-- ═══ CHAPTER 1 ═══ -->
   <section class="chapter" id="r1">
     <div class="chapter-header">
       <div class="chapter-icon">🔎</div>
@@ -850,7 +802,7 @@
 
 Analyse my spending from last month in 3 steps:
 
-1. Group all transactions by category (groceries, transport, bills & utilities, eating out, entertainment, other) and give me a subtotal for each.
+1. Group all transactions by category (groceries, transport, bills &amp; utilities, eating out, entertainment, other) and give me a subtotal for each.
 
 2. Identify which category looks disproportionately high compared to a typical household budget.
 
@@ -861,14 +813,13 @@ My monthly take-home income: [e.g. $3,500 / £2,800 / €3,000]
 My expenses last month (paste your list however it comes):
 [e.g. Supermarket $340, Deliveroo $180, Rent $1,400, Electricity $90, Netflix $18, Spotify $12, Petrol $160, Restaurants $310, Clothing $150, Pharmacy $45]</div>
         <div class="komenda-actions">
-          <button class="btn-kopiuj" onclick="kopiuj('k1', this)">📋 Copy prompt</button>
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k1&#39;, this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ CHAPTER 2 ═══ -->
   <section class="chapter" id="r2">
     <div class="chapter-header">
       <div class="chapter-icon">💡</div>
@@ -900,18 +851,17 @@ My fixed monthly expenses:
 [e.g. Rent $1,400, loan repayment $350, phone plan $55, internet $45, electricity approx. $90, car insurance $80]
 
 My variable monthly expenses (approximate):
-[e.g. groceries & household $550, restaurants & coffee out $280, streaming & entertainment $65, clothing $120, petrol $160]
+[e.g. groceries &amp; household $550, restaurants &amp; coffee out $280, streaming &amp; entertainment $65, clothing $120, petrol $160]
 
 What I am absolutely not willing to cut: [e.g. one holiday per year, gym membership, Friday nights out with friends]</div>
         <div class="komenda-actions">
-          <button class="btn-kopiuj" onclick="kopiuj('k2', this)">📋 Copy prompt</button>
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k2&#39;, this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ CHAPTER 3 ═══ -->
   <section class="chapter" id="r3">
     <div class="chapter-header">
       <div class="chapter-icon">⚖️</div>
@@ -948,14 +898,13 @@ Deal C (if you have one): [Details, or leave blank]
 
 What matters most to me: [e.g. lowest monthly cost / no contract lock-in / fastest speed / reliable customer service]</div>
         <div class="komenda-actions">
-          <button class="btn-kopiuj" onclick="kopiuj('k3', this)">📋 Copy prompt</button>
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k3&#39;, this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ CHAPTER 4 ═══ -->
   <section class="chapter" id="r4">
     <div class="chapter-header">
       <div class="chapter-icon">🛒</div>
@@ -991,14 +940,13 @@ My fixed monthly commitments: [e.g. rent $1,200, loan repayment $350, bills appr
 My current savings: [e.g. $4,500 / or: none at the moment]
 Employment situation: [e.g. permanent job / freelance / fixed-term contract]</div>
         <div class="komenda-actions">
-          <button class="btn-kopiuj" onclick="kopiuj('k4', this)">📋 Copy prompt</button>
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k4&#39;, this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ CHAPTER 5 ═══ -->
   <section class="chapter" id="r5">
     <div class="chapter-header">
       <div class="chapter-icon">📊</div>
@@ -1033,14 +981,13 @@ Fixed expenses I can't avoid:
 My current financial priorities:
 [e.g. build an emergency fund / pay off credit card debt / save for a holiday / just stop going further into the red]</div>
         <div class="komenda-actions">
-          <button class="btn-kopiuj" onclick="kopiuj('k5', this)">📋 Copy prompt</button>
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k5&#39;, this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ CHEAT SHEET ═══ -->
   <section class="chapter" id="cheatsheet">
     <div class="chapter-header">
       <div class="chapter-icon">📌</div>
@@ -1059,12 +1006,11 @@ My current financial priorities:
           <strong>No. 4</strong> — Big purchase → Ch. 4 &nbsp;|&nbsp;
           <strong>No. 5</strong> — Monthly budget → Ch. 5
         </p>
-        <p style="color:var(--muted);font-size:0.85rem;margin-top:12px;">All prompts also available at <a href="https://book3.aidorzeczy.com" style="color:var(--orange);">book3.aidorzeczy.com</a></p>
+        <p style="color:var(--muted);font-size:0.85rem;margin-top:12px;">All prompts also available at <a href="https://book3.aidorzeczy.com/" style="color:var(--orange);">book3.aidorzeczy.com</a></p>
       </div>
     </div>
   </section>
 
-  <!-- ═══ ADVANCED ═══ -->
   <section class="chapter" id="advanced">
     <div class="chapter-header">
       <div class="chapter-icon">🚀</div>
@@ -1104,7 +1050,7 @@ Major one-off expenses this year: [e.g. new boiler $3,200 / car $9,000]
 Any financial surprises this year — good or bad:
 [e.g. unexpectedly high energy bills / redundancy payment / medical expense I didn't plan for]</div>
         <div class="komenda-actions">
-          <button class="btn-kopiuj" onclick="kopiuj('k6', this)">📋 Copy prompt</button>
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k6&#39;, this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
         </div>
       </div>
@@ -1135,7 +1081,7 @@ How much I can currently save per month: [e.g. approx. $200–250]
 My monthly income and main commitments:
 [e.g. $3,500 take-home / $2,100 in fixed expenses]</div>
         <div class="komenda-actions">
-          <button class="btn-kopiuj" onclick="kopiuj('k7', this)">📋 Copy prompt</button>
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k7&#39;, this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
         </div>
       </div>
@@ -1164,7 +1110,7 @@ Type of document: [e.g. broadband contract / car lease agreement / insurance pol
 Document content (paste below):
 [Paste the contract text or the sections that concern you. Remove any personal details — name, address, account numbers — before pasting.]</div>
         <div class="komenda-actions">
-          <button class="btn-kopiuj" onclick="kopiuj('k8', this)">📋 Copy prompt</button>
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k8&#39;, this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
         </div>
       </div>
@@ -1196,7 +1142,7 @@ Option 3 — Rent / lease (if applicable): [e.g. $320/month, no long-term commit
 
 My situation: [e.g. I drive a lot / reliability is critical / I prefer not to be locked into a long-term commitment]</div>
         <div class="komenda-actions">
-          <button class="btn-kopiuj" onclick="kopiuj('k9', this)">📋 Copy prompt</button>
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k9&#39;, this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
         </div>
       </div>
@@ -1230,7 +1176,7 @@ Where it came from: [e.g. work bonus / tax refund / sold something / inheritance
 My current financial situation:
 [e.g. no emergency fund / credit card debt of $1,800 / finances broadly stable / big expense coming up in 3 months]</div>
         <div class="komenda-actions">
-          <button class="btn-kopiuj" onclick="kopiuj('k10', this)">📋 Copy prompt</button>
+          <button class="btn-kopiuj" onclick="kopiuj(&#39;k10&#39;, this)">📋 Copy prompt</button>
           <span class="copy-hint">Ctrl+V or long-press → Paste</span>
         </div>
       </div>
@@ -1240,7 +1186,6 @@ My current financial situation:
 
 </main>
 
-<!-- ══ NEWSLETTER & REVIEW ══════════════════════════════════════════════ -->
 <div class="bonus-section">
 
   <div class="bonus-card">
@@ -1249,60 +1194,27 @@ My current financial situation:
       <h3>Join the AI community and get your bonuses</h3>
     </div>
     <p>Sign up for my free newsletter to receive updates on new prompts, AI tool news, and upcoming books in the series.</p>
-    <div class="newsletter-form">
-      <input class="newsletter-input" type="email" id="nl3-email" placeholder="Your best email address">
-      <button class="btn-newsletter" id="nl3-btn" onclick="nlSubmit('nl3')">Sign me up →</button>
+    
+    <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin:22px 0 14px;flex-wrap:wrap;">
+      <span style="font-size:2.2rem;animation:pointRight 1.2s ease-in-out infinite;display:inline-block;">&#x1F449;</span>
+      <a href="https://ebooks.aidorzeczy.com/#community" target="_blank" rel="noopener"
+         style="display:inline-flex;align-items:center;text-decoration:none;background:#2563eb;color:#fff;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;padding:14px 28px;border-radius:9px;box-shadow:0 4px 20px rgba(37,99,235,0.4);">
+        Sign me up →
+      </a>
     </div>
-    <div id="nl3-msg" style="min-height:18px;margin-top:10px;font-size:0.82rem;"></div>
+
     <p style="margin-top:8px;margin-bottom:0;"><small>No spam. Unsubscribe at any time.</small></p>
+    <p style="margin-top:10px;margin-bottom:0;font-size:0.75rem;color:#475569;line-height:1.6;">By signing up, you agree to receive my newsletter and the free bonus. We process your email via Mailchimp to deliver this content. You can unsubscribe at any time. See our <a href="https://privacy.aidorzeczy.com" target="_blank" rel="noopener" style="color:#94A3B8;text-decoration:underline;">Privacy Policy</a> for details.</p>
   </div>
 
-  <script>
-  async function nlSubmit(id) {
-    const email = document.getElementById(id+'-email').value.trim();
-    const msg   = document.getElementById(id+'-msg');
-    const btn   = document.getElementById(id+'-btn');
-    if (!email || !email.includes('@')) {
-      msg.style.color = '#EF4444';
-      msg.textContent = 'Please enter a valid email address.';
-      return;
-    }
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-    msg.textContent = '';
-    try {
-      const r = await fetch('https://formspree.io/f/mkoqlrqa', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, _subject: 'New subscriber — AI Made Simple Newsletter' })
-      });
-      if (r.ok) {
-        msg.style.color = '#22C55E';
-        msg.textContent = '✓ You\'re on the list!';
-        btn.textContent = '✓ Done!';
-        btn.style.background = 'var(--green-dim, #15803D)';
-        document.getElementById(id+'-email').value = '';
-      } else {
-        const d = await r.json();
-        msg.style.color = '#EF4444';
-        msg.textContent = d.errors ? d.errors.map(e=>e.message).join(', ') : 'Something went wrong. Try again.';
-        btn.disabled = false;
-        btn.textContent = 'Sign me up →';
-      }
-    } catch(e) {
-      msg.style.color = '#EF4444';
-      msg.textContent = 'Connection error. Please try again.';
-      btn.disabled = false;
-      btn.textContent = 'Sign me up →';
-    }
-  }
-  </script>
+  <div class="review-card">
     <h3>Did my prompts make your life easier?</h3>
     <p>Your opinion is the fuel for this series. If the knowledge in my ebooks saved you time, <span class="highlight">leaving a short, honest review on Amazon takes 30 seconds</span> — and helps me reach more people.</p>
     <div class="review-buttons">
-      <a class="btn-review" href="LINK_DO_RECENZJI_TOM1_NA_AMAZONIE" target="_blank" rel="noopener">⭐ Review Book 1</a>
-      <a class="btn-review" href="LINK_DO_RECENZJI_TOM2_NA_AMAZONIE" target="_blank" rel="noopener">⭐ Review Book 2</a>
-      <a class="btn-review" href="LINK_DO_RECENZJI_TOM3_NA_AMAZONIE" target="_blank" rel="noopener">⭐ Review Book 3</a>
+      <a class="btn-review" href="https://ebooks.aidorzeczy.com/#book-1-3" target="_blank" rel="noopener">⭐ Review Book 1</a>
+      <a class="btn-review" href="https://ebooks.aidorzeczy.com/#book-1-3" target="_blank" rel="noopener">⭐ Review Book 2</a>
+      <a class="btn-review" href="https://ebooks.aidorzeczy.com/#book-1-3" target="_blank" rel="noopener">⭐ Review Book 3</a>
+      <a class="btn-review" href="https://ebooks.aidorzeczy.com/#book-4-6" target="_blank" rel="noopener">⭐ Review Book 4</a>
     </div>
   </div>
 
@@ -1310,58 +1222,16 @@ My current financial situation:
 
 <footer>
   <div class="footer-tomy">
-    <a class="footer-tom-link coming" href="https://book1.aidorzeczy.com">Book 1 — Communication &amp; Difficult Emails</a>
-    <a class="footer-tom-link coming" href="https://book2.aidorzeczy.com">Book 2 — Organisation &amp; Planning</a>
-    <a class="footer-tom-link current" href="#">★ Book 3 — you are here</a>
+    <a class="footer-tom-link coming" href="https://book1.aidorzeczy.com/">Book 1 — Communication &amp; Difficult Emails</a>
+    <a class="footer-tom-link coming" href="https://book2.aidorzeczy.com/">Book 2 — Organisation &amp; Planning</a>
+    <a class="footer-tom-link current" href="https://book3.aidorzeczy.com/#">★ Book 3 — you are here</a>
+    <a class="footer-tom-link coming" href="https://book4.aidorzeczy.com/">Book 4 — Movies &amp; What to Watch</a>
   </div>
   <p class="footer-copy">AI Made Simple · Leszek Ignatowicz · book3.aidorzeczy.com</p>
   <p class="amazon-disclaimer" style="max-width:680px;margin:12px auto 0;">This page is a free, optional companion to <em>AI Made Simple — Book 3</em> (available on Amazon), provided solely to make copying prompts more convenient. All prompts shown here are also available in full text inside the purchased e-book.</p>
 </footer>
 
-</div><!-- koniec #tresc -->
-
-<script>
-  // ── Newsletter na ekranie logowania ───────────────────────
-  async function nlLockSubmit() {
-    const emailEl = document.getElementById('nl-lock-email');
-    const msg     = document.getElementById('nl-lock-msg');
-    const btn     = document.getElementById('nl-lock-btn');
-    const email   = emailEl.value.trim();
-    if (!email || !email.includes('@')) {
-      msg.style.color = '#EF4444';
-      msg.textContent = 'Please enter a valid email address.';
-      return;
-    }
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-    msg.textContent = '';
-    try {
-      const r = await fetch('https://formspree.io/f/mkoqlrqa', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, _subject: 'New subscriber — AI Made Simple Newsletter (Book 3 lock screen)' })
-      });
-      if (r.ok) {
-        msg.style.color = '#22C55E';
-        msg.textContent = '✓ You\'re on the list!';
-        btn.textContent = '✓ Done!';
-        btn.style.background = '#15803D';
-        emailEl.value = '';
-      } else {
-        const d = await r.json();
-        msg.style.color = '#EF4444';
-        msg.textContent = d.errors ? d.errors.map(e=>e.message).join(', ') : 'Something went wrong. Try again.';
-        btn.disabled = false;
-        btn.textContent = 'Sign me up →';
-      }
-    } catch(e) {
-      msg.style.color = '#EF4444';
-      msg.textContent = 'Connection error. Please try again.';
-      btn.disabled = false;
-      btn.textContent = 'Sign me up →';
-    }
-  }
-
+</div><script>
   // Dostęp chroniony hashem SHA-256 — hasła nie są przechowywane w źródle
   const _H = [
     '332885dba9dae4efdbc4a1f76296c0e5f8362114c27046e6657b7d563606bd2e',
@@ -1450,7 +1320,11 @@ My current financial situation:
     });
   }, { rootMargin: '-40% 0px -50% 0px' });
   sections.forEach(s => observer.observe(s));
+
+  // Italicise [placeholder] text inside every prompt block
+  document.querySelectorAll('.komenda-tekst').forEach(function(el) {
+    el.innerHTML = el.innerHTML.replace(/(\[[^\]]*\])/g, '<em style="color:#93C5FD;font-style:italic;">$1</em>');
+  });
 </script>
 
-</body>
-</html>
+</body></html>
